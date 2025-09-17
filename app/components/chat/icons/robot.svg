@@ -6,6 +6,6 @@
       <use xlink:href="#image0_135_973" transform="scale(0.00625)"/>
     </pattern>
     <!-- ここを base64 からファイル参照に変更 -->
-    <image id="image0_135_973" width="160" height="160" xlink:href="./000.png"/>
+    <image id="image0_135_973" width="160" height="160" xlink:href=".public/000.png"/>
   </defs>
 </svg>
