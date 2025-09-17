@@ -4,9 +4,9 @@
   <path d="M11 28.76H29V10.76H11V28.76Z" fill="url(#pattern0)"/>
   <defs>
     <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-      <use xlink:href="#image0_135_973" href="#image0_135_973" transform="scale(0.00625)"/>
+      <use href="#image0_135_973" xlink:href="#image0_135_973" transform="scale(0.00625)"/>
     </pattern>
-    <!-- 同フォルダの 000.png を参照 -->
-    <image id="image0_135_973" width="160" height="160" xlink:href="./000.png" href="./000.png"/>
+    <image id="image0_135_973" width="160" height="160"
+           href="/000.png" xlink:href="/000.png"/>
   </defs>
 </svg>
