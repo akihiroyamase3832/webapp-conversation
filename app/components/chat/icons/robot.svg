@@ -6,9 +6,8 @@
     <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
       <use xlink:href="#image0_135_973" transform="scale(0.00625)"/>
     </pattern>
-    <!-- ここだけ差し替え：000.png の base64 を入れる -->
+    <!-- ここだけ差し替え -->
     <image id="image0_135_973" width="160" height="160"
-      xlink:href="data:image/png;base64,{{ここに 000.png の base64 }}"
-      href="data:image/png;base64,{{ここに 000.png の base64 }}"/>
+      xlink:href="/000.png" href="/000.png"/>
   </defs>
 </svg>
