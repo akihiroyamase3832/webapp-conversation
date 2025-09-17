@@ -1,12 +1,18 @@
 <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- 背景の丸 -->
   <rect width="40" height="40" rx="20" fill="#D5F5F6"/>
+
+  <!-- 中の四角（ここに画像を敷く） -->
   <path d="M11 28.76H29V10.76H11V28.76Z" fill="url(#pattern0)"/>
+
   <defs>
-    <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-      <use href="#image0_135_973" xlink:href="#image0_135_973" transform="scale(0.00625)"/>
+    <!-- 画像敷き詰め用のパターン。画像は public/000.png を使用 -->
+    <pattern id="pattern0" width="1" height="1" patternContentUnits="objectBoundingBox">
+      <image
+        href="/000.png" xlink:href="/000.png"
+        width="1" height="1"
+        preserveAspectRatio="xMidYMid slice" />
     </pattern>
-    <image id="image0_135_973" width="160" height="160"
-           href="/000.png" xlink:href="/000.png"/>
   </defs>
 </svg>
