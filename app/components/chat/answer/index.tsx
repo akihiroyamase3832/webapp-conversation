@@ -189,37 +189,37 @@ const Answer: FC<IAnswerProps> = ({
         </div>
         <div className={`${s.answerWrap} max-w-[calc(100%-3rem)]`}>
           <div className={`${s.answer} relative text-sm text-gray-900`}>
-         <div className="ml-2 py-3 px-4 bg-gray-100 rounded-tr-2xl rounded-b-2xl">
- 　　　　　<div className="ml-2 py-3 px-4 bg-gray-100 rounded-tr-2xl rounded-b-2xl">
+<div className="ml-2 py-3 px-4 bg-gray-100 rounded-tr-2xl rounded-b-2xl">
   {/* workflow panel hidden
   {workflowProcess && (
     <WorkflowProcess data={workflowProcess} hideInfo />
   )}
   */}
   {/* 以降はそのまま */}
-              {(isResponding && (isAgentMode ? (!content && (agent_thoughts || []).filter(item => !!item.thought || !!item.tool).length === 0) : !content))
-                ? (
-                  <div className="flex items-center justify-center w-6 h-5">
-                    <LoadingAnim type="text" />
-                  </div>
-                )
-                : (isAgentMode
-                  ? agentModeAnswer
-                  : (
-                    <StreamdownMarkdown content={content} />
-                  ))}
-              {suggestedQuestions.length > 0 && (
-                <div className="mt-3">
-                  <div className="flex gap-1 mt-1 flex-wrap">
-                    {suggestedQuestions.map((suggestion, index) => (
-                      <div key={index} className="flex items-center gap-1">
-                        <Button className="text-sm" type="link" onClick={() => suggestionClick(suggestion)}>{suggestion}</Button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+  {(isResponding && (isAgentMode ? (!content && (agent_thoughts || []).filter(item => !!item.thought || !!item.tool).length === 0) : !content))
+    ? (
+      <div className="flex items-center justify-center w-6 h-5">
+        <LoadingAnim type="text" />
+      </div>
+    )
+    : (isAgentMode
+      ? agentModeAnswer
+      : (
+        <StreamdownMarkdown content={content} />
+      ))}
+  {suggestedQuestions.length > 0 && (
+    <div className="mt-3">
+      <div className="flex gap-1 mt-1 flex-wrap">
+        {suggestedQuestions.map((suggestion, index) => (
+          <div key={index} className="flex items-center gap-1">
+            <Button className="text-sm" type="link" onClick={() => suggestionClick(suggestion)}>{suggestion}</Button>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</div>
+
             <div className="absolute top-[-14px] right-[-14px] flex flex-row justify-end gap-1">
               {!feedbackDisabled && !item.feedbackDisabled && renderItemOperation()}
               {/* User feedback must be displayed */}
