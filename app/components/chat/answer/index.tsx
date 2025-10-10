@@ -232,4 +232,3 @@ const Answer: FC<IAnswerProps> = ({
   )
 }
 export default React.memo(Answer)
-export default React.memo(Answer)
