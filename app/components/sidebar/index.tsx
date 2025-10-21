@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import {
   ChatBubbleOvalLeftEllipsisIcon,
   PencilSquareIcon,
+  ArrowPathIcon,            // 追加：リセット用アイコン
 } from '@heroicons/react/24/outline'
 import { ChatBubbleOvalLeftEllipsisIcon as ChatBubbleOvalLeftEllipsisSolidIcon } from '@heroicons/react/24/solid'
 import Button from '@/app/components/base/button'
@@ -23,13 +24,18 @@ export interface ISidebarProps {
   list: ConversationItem[]
 }
 
-const Sidebar: FC<ISidebarProps> = ({
-  copyRight,
-  currentId,
-  onCurrentIdChange,
-  list,
-}) => {
-  const { t } = useTranslation()
+// 会話の完全リセット
+const resetChat = React.useCallback(() => {
+try {
+// 使っているキー名に合わせて。未知のケースも拾えるよう前方一致で削除
+localStorage.removeItem('dify_conversation_id')
+Object.keys(localStorage).forEach(k => {
+if (k.startsWith('conversationId:')) localStorage.removeItem(k)
+     })
+  } finally {
+     window.location.reload()
+   }
+ }, [])
   return (
     <div
       className="shrink-0 flex flex-col overflow-y-auto bg-white pc:w-[244px] tablet:w-[192px] mobile:w-[240px]  border-r border-gray-200 tablet:h-[calc(100vh_-_3rem)] mobile:h-screen"
@@ -42,6 +48,13 @@ const Sidebar: FC<ISidebarProps> = ({
           >
             <PencilSquareIcon className="mr-2 h-4 w-4" /> {t('app.chat.newChat')}
           </Button>
+       {/* リセット（履歴クリア）ボタン */}
+         <Button
+           onClick={resetChat}
+           className="mt-2 group block w-full flex-shrink-0 !justify-start !h-9 text-rose-600 items-center text-sm border border-rose-200 rounded-md hover:bg-rose-50"
+        >
+          <ArrowPathIcon className="mr-2 h-4 w-4" /> リセット（履歴クリア）
+        </Button>
         </div>
       )}
 
@@ -81,6 +94,8 @@ const Sidebar: FC<ISidebarProps> = ({
       <div className="flex flex-shrink-0 pr-4 pb-4 pl-4">
         <div className="text-gray-400 font-normal text-xs">© {copyRight} {(new Date()).getFullYear()}</div>
       </div>
+           {/* footer removed */}
+
     </div>
   )
 }
