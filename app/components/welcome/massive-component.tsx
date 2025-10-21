@@ -10,11 +10,12 @@ import type { AppInfo } from '@/types/app'
 import Button from '@/app/components/base/button'
 
 export const AppInfoComp: FC<{ siteInfo: AppInfo }> = ({ siteInfo }) => {
-  const { t } = useTranslation()
+  // ※ このコンポーネントでは翻訳キーを使わず固定文言にします
   return (
     <div>
       <div className='flex items-center py-2 text-xl font-medium text-gray-700 rounded-md'>
-        👏 {t('app.common.welcome')} {siteInfo.title}
+        {/* ここを置き換え */}
+        👏 ようこそ、げつようび撲滅委員会、委員長室へ
       </div>
       <p className='text-sm text-gray-500'>{siteInfo.description}</p>
     </div>
@@ -42,7 +43,6 @@ export const ChatBtn: FC<{ onClick: () => void; className?: string }> = ({
   className,
   onClick,
 }) => {
-  const { t } = useTranslation()
   return (
     <Button
       type='primary'
@@ -57,7 +57,8 @@ export const ChatBtn: FC<{ onClick: () => void; className?: string }> = ({
           fill="white"
         />
       </svg>
-      {t('app.chat.startChat')}
+      {/* ここを置き換え */}
+      マンディ京子と話す
     </Button>
   )
 }
