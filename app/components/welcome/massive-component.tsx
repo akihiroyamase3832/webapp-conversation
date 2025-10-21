@@ -58,7 +58,7 @@ export const ChatBtn: FC<{ onClick: () => void; className?: string }> = ({
         />
       </svg>
       {/* ここを置き換え */}
-      マンディ京子と話す
+      京子と話す
     </Button>
   )
 }
