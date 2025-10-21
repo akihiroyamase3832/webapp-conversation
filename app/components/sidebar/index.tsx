@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import {
   ChatBubbleOvalLeftEllipsisIcon,
   PencilSquareIcon,
+  ArrowPathIcon, // 追加：リセット用
 } from '@heroicons/react/24/outline'
 import { ChatBubbleOvalLeftEllipsisIcon as ChatBubbleOvalLeftEllipsisSolidIcon } from '@heroicons/react/24/solid'
 import Button from '@/app/components/base/button'
@@ -24,12 +25,25 @@ export interface ISidebarProps {
 }
 
 const Sidebar: FC<ISidebarProps> = ({
-  copyRight,
+  copyRight, // ← 使わなくても残してOK（型変更不要）
   currentId,
   onCurrentIdChange,
   list,
 }) => {
   const { t } = useTranslation()
+
+  // 会話の完全リセット
+  const resetChat = React.useCallback(() => {
+    try {
+      localStorage.removeItem('dify_conversation_id')
+      Object.keys(localStorage).forEach((k) => {
+        if (k.startsWith('conversationId:')) localStorage.removeItem(k)
+      })
+    } finally {
+      window.location.reload()
+    }
+  }, [])
+
   return (
     <div
       className="shrink-0 flex flex-col overflow-y-auto bg-white pc:w-[244px] tablet:w-[192px] mobile:w-[240px]  border-r border-gray-200 tablet:h-[calc(100vh_-_3rem)] mobile:h-screen"
@@ -41,6 +55,15 @@ const Sidebar: FC<ISidebarProps> = ({
             className="group block w-full flex-shrink-0 !justify-start !h-9 text-primary-600 items-center text-sm"
           >
             <PencilSquareIcon className="mr-2 h-4 w-4" /> {t('app.chat.newChat')}
+          </Button>
+
+          {/* リセット（履歴クリア）ボタン */}
+          <Button
+            onClick={resetChat}
+            className="mt-2 group block w-full flex-shrink-0 !justify-start !h-9 text-rose-600 items-center text-sm border border-rose-200 rounded-md hover:bg-rose-50"
+          >
+            <ArrowPathIcon className="mr-2 h-4 w-4" />
+            リセット（履歴クリア）
           </Button>
         </div>
       )}
@@ -75,15 +98,12 @@ const Sidebar: FC<ISidebarProps> = ({
           )
         })}
       </nav>
-      {/* <a className="flex flex-shrink-0 p-4" href="https://langgenius.ai/" target="_blank">
-        <Card><div className="flex flex-row items-center"><ChatBubbleOvalLeftEllipsisSolidIcon className="text-primary-600 h-6 w-6 mr-2" /><span>LangGenius</span></div></Card>
-      </a> */}
-      <div className="flex flex-shrink-0 pr-4 pb-4 pl-4">
-        <div className="text-gray-400 font-normal text-xs">© {copyRight} {(new Date()).getFullYear()}</div>
-      </div>
+
+      {/* footer removed（© 表示は削除） */}
     </div>
   )
 }
 
 export default React.memo(Sidebar)
+
 
